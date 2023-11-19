@@ -3,6 +3,7 @@ package com.arthurlevi.dslist.services;
 import com.arthurlevi.dslist.dto.GameDto;
 import com.arthurlevi.dslist.dto.GameMinDto;
 import com.arthurlevi.dslist.entities.Game;
+import com.arthurlevi.dslist.projections.GameMinProjection;
 import com.arthurlevi.dslist.repositories.GameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +14,7 @@ import java.util.List;
 @Service
 public class GameService {
     @Autowired
-    GameRepository gameRepository;
+    private GameRepository gameRepository;
 
     @Transactional(readOnly = true)//garante que a transacao aconteca com o banco de dados, indica que nao ocorrera escrita
     public List<GameMinDto> findAll(){
@@ -25,5 +26,11 @@ public class GameService {
     public GameDto findById(Long id){
          Game game = gameRepository.findById(id).get();
         return new GameDto(game);
+    }
+    @Transactional(readOnly = true)//garante que a transacao aconteca com o banco de dados, indica que nao ocorrera escrita
+    public List<GameMinDto> findByList(Long listId){
+        List<GameMinProjection> result = gameRepository.searchByList(listId);
+        List<GameMinDto> dtoList = result.stream().map(x -> new GameMinDto(x)).toList();
+        return dtoList;
     }
 }

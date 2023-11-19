@@ -1,12 +1,13 @@
 package com.arthurlevi.dslist.dto;
 
 import com.arthurlevi.dslist.entities.Game;
+import com.arthurlevi.dslist.projections.GameMinProjection;
 
 public class GameMinDto {
 
     private Long id;
     private String title;
-    private String year;
+    private Integer year;
     private String imgUrl;
     private String shortDescription;
 
@@ -19,6 +20,13 @@ public class GameMinDto {
         imgUrl = entityGame.getImgUrl();
         shortDescription = entityGame.getShortDescription();
     }
+    public GameMinDto(GameMinProjection projection){
+        id = projection.getId();
+        title = projection.getTitle();
+        year = projection.getYear();
+        imgUrl = projection.getImgUrl();
+        shortDescription = projection.getShortDescription();
+    }
 
     public long getId() {
         return id;
@@ -28,7 +36,7 @@ public class GameMinDto {
         return title;
     }
 
-    public String getYear() {
+    public Integer getYear() {
         return year;
     }
 

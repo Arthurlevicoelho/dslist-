@@ -16,7 +16,7 @@ import java.util.List;
 public class GameController {
 
     @Autowired
-    GameService gameService;
+    private GameService gameService;
 
     @GetMapping
     public List<GameMinDto> findAll(){

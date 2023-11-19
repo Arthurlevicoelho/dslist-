@@ -9,7 +9,7 @@ public class GameDto {
 
     private Long id;
     private String title;
-    private String year;
+    private Integer year;
     private String genre;
     private String platforms;
     private String imgUrl;
@@ -40,11 +40,11 @@ public class GameDto {
         this.title = title;
     }
 
-    public String getYear() {
+    public Integer getYear() {
         return year;
     }
 
-    public void setYear(String year) {
+    public void setYear(Integer year) {
         this.year = year;
     }
 

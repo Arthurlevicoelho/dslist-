@@ -16,7 +16,7 @@ import java.util.List;
 @Service
 public class GameListService {
     @Autowired
-    GameListRepository gameListRepository;
+    private GameListRepository gameListRepository;
 
     @Transactional(readOnly = true)//garante que a transacao aconteca com o banco de dados, indica que nao ocorrera escrita
     public List<GameListDto> findAll(){
